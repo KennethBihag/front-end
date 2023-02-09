@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+form:first-child{
+    /* text-align: center; */
+    margin: auto;
+}
+
+label, input{
+    display: block;
+}

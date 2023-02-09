@@ -1,0 +1,59 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+main{
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+main section{
+    width: 100%;
+}
+
+main h2 {
+    text-align: center;
+}
+
+label{
+    display: inline-block;
+    width: 128px;
+    text-align: right;
+}
+
+section:nth-child(2n+1){
+    border-width: 2px;
+    border-top-style: dotted;
+    border-color: red;
+}
+
+.plist a {
+    text-decoration-line: none;
+}
+
+.description, .pinput, .poutput {
+    text-align: center;
+}
+
+iframe{
+    width: 50%;
+}
+
+#p85 {  
+    display: flex;
+    justify-content: center;
+}
+
+td:hover{
+    cursor: pointer;
+}
+
+@media (orientation: landscape){
+    * {
+        background-color: rgb(191, 255, 127);
+    }
+}

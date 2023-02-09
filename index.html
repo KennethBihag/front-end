@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Pratice Page
+        </title>
+        <link type="text/css" rel="stylesheet" href="styles.css" media="screen">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Just practice">
+    </head>
+    <body contextmenu="#menyu">
+        <script type="module" src="main.js" async defer></script>
+        <script>
+            function SetLeader(lName){
+                alert(`Lead the team ${lName}!!!`);
+            }
+        </script>
+        <main>
+            <h2 contextmenu="#menyu">Leader</h2>
+            <form onsubmit="SetLeader(this.leader.value)">
+                <label for="leader" unselectable="on">Who are you?</label>
+                <input type="text" id="leader" name="leader" placeholder="&lt;your name&gt;"
+                       spellcheck="true" accesskey="l" tabindex="2"/>
+                <label for="pkmn1">Pokemon 1: </label><input type="text" id="pkmn1" name="pkmn1" placeholder="First pokemon" accesskey="P" tabindex="1">
+                <input type="submit" value="Lead the team!!!">
+            </form>
+        </main>
+        <menu id="menyu">
+            <li><button>Tae</button></li>
+            <li><button>Tobol</button></li>
+        </menu>
+    </body>
+</html>

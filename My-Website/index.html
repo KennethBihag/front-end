@@ -1,0 +1,60 @@
+<!<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Website</title>
+        <meta name="description" content="My website of 3 features">
+        <meta name="keywords" content="personal project, pokemon, leetcode, visualizer, obj">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        <script src="./main.js" type="module" async defer></script>
+        <nav>
+            <ul>
+                <li>HOME</li>
+                <li>Pokemon</li>
+                <li>Leet Code</li>
+                <li>Visualizer</li>
+            </ul>
+        </nav>
+        <main>
+            <h1>My Website</h1>
+            <article id="intro">
+                &nbsp;&nbsp;
+                <h2>Features</h2>
+                <ol class="features" type="A">
+                    <li>Pokemon</li>
+                    <li>Leet Code</li>
+                    <li>Visualizer</li>
+                </ol>
+            </article>
+            <h2>Register/Log In</h2>
+            <form title="Registration form" onsubmit="register(event);">
+                <legend id="personalinfo">
+                    <label for="name1">First Name:</label>
+                        <input id="name1" name="name1" type="text" autocapitalize="words"
+                            autocomplete="true">
+                    <br>
+                    <label for="name2">Last Name:</label>
+                        <input id="name2" name="name2" type="text" autocapitalize="words"
+                            autocomplete="true">
+                </legend>
+                <legend id="other">
+                    <label for="pw">Password:</label>
+                        <input id="pw" name="pw" type="password" placeholder="8 characters [a-zA-Z0-9$@_]">
+                </legend>
+                <button type="submit">Register</button>
+                <button type="button" onclick="LogIn(event);">Log In</button>
+            </form>
+        </main>
+        <footer>
+            <p></p>
+            <p>Kenneth Bihag &copy; 2025</p>
+        </footer>
+    </body>
+
+    </html>

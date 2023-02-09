@@ -1,0 +1,23 @@
+main {
+    margin-left: 0;
+    background-color: brown;
+}
+
+iframe {
+    width: 100%;
+}
+
+.pinput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pinput * {
+    display: block;
+}
+
+.pinput form {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        *::selection{
+            color: yellow;
+        }
+
+        body:nth-{
+            color: blue;
+        }
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        span{
+            font-weight: bold;
+        }
+        p::first-letter{
+            font-size: 2rem;
+            color: green;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <span id="1">Radix Sort</span>
+    <p>
+        Radix sort works by sorting each digit from least significant digit to most significant digit. So in base 10
+        (the decimal system), radix sort would sort by the digits in the 1's place, then the 10's place, and so on. To
+        do this, radix sort uses counting sort as a subroutine to sort the digits in each place value.
+    </p>
+    <hr>
+    <span id="2">Construct Lexicographically Largest Valid Sequence</span>
+    <p>
+        Given an integer n, find a sequence that satisfies all of the following:
+        <br><br>
+        The integer 1 occurs once in the sequence.
+        Each integer between 2 and n occurs twice in the sequence.
+        For every integer i between 2 and n, the distance between the two occurrences of i is exactly i.
+        The distance between two numbers on the sequence, a[i] and a[j], is the absolute difference of their indices, |j
+        - i|.
+        <br><br>
+        Return the lexicographically largest sequence. It is guaranteed that under the given constraints, there is
+        always a solution.
+        <br><br>
+        A sequence a is lexicographically larger than a sequence b (of the same length) if in the first position where a
+        and b differ, sequence a has a number greater than the corresponding number in b. For example, [0,1,9,0] is
+        lexicographically larger than [0,1,5,6] because the first position they differ is at the third number, and 9 is
+        greater than 5.
+    </p>
+    <span id="3">Apply Operations to an Array</span>
+    <p></p>
+    <span id="4">Maximal Rectangle</span>
+    <p>
+        Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+    </p>
+</body>
+
+</html>
