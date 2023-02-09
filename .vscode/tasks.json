@@ -1,14 +1,14 @@
 {
     "tasks": [
         {
-            "label": "Go Live ModelViewer, No Browser",
+            "label": "Go Live  Chrome",
             "type": "shell",
-            "command": "live-server --no-browser"
+            "command": "live-server --browser=chrome"
         },
         {
             "label": "Start Server",
             "type": "shell",
-            "command": "pushd prac/server && npm start"
+            "command": "pushd server && npm start"
         }
     ]
 }
