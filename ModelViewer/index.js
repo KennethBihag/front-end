@@ -1,4 +1,4 @@
-import {THREE} from './viewer.js';
+import * as THREE from './viewer.js';
 import './functions.js';
 import './events.js'
 globalThis.THREE = THREE;

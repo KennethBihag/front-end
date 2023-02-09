@@ -1,5 +1,4 @@
-import * as THREE from './three.js-r122/src/Three.js';
-import { Matrix3 } from './three.js-r122/src/Three.js';
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.module.js';
 globalThis.enlarged=false;
 function ViewerFactory(){
     function RandomizeBGColor(){
