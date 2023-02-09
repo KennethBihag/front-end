@@ -1,0 +1,14 @@
+{
+    "tasks": [
+        {
+            "label": "Go Live ModelViewer, No Browser",
+            "type": "shell",
+            "command": "live-server --no-browser"
+        },
+        {
+            "label": "Start Server",
+            "type": "shell",
+            "command": "pushd prac/server && npm start"
+        }
+    ]
+}

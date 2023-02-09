@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+</head>
+
+<body>
+    <button id='post' onclick="postData();">Post</button>
+    <button id="getNULL" onclick="getNULL();">Get NULL</button>
+    <button id="getJSON" onclick="getData();">Get JSON</button>
+    <button id="getArray" onclick="getArrayData();">Get Raw Array</button>
+    <script>
+        let serverURL = 'http://localhost:8081';
+        let postReq = {
+            method: 'POST',
+            body: JSON.stringify({theArray: [1,4,9,16,25,36,49]}),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        function getNULL() {
+            fetch(serverURL)
+            .then(
+                res=>
+                {
+                    res.body.getReader().read().then(r=>{
+                        let resText = '';
+                        r.value.forEach(n=>resText+=String.fromCharCode(n))
+                        alert(resText);
+                    });
+                    //res.text().then(t=> console.log(`Response said ${t}`));                    
+                }
+            );
+        }
+        async function getData() {
+            let res = await fetch(serverURL + '/array/json');
+            let data = await res.json();
+            alert(JSON.stringify(data));
+        }
+        function getArrayData() {
+            fetch(serverURL + '/array/raw')
+                .then(res => res.json())
+                .then(data => alert(data));
+        }
+        function postData(){
+            fetch(serverURL+'/arrays',postReq).then(
+                res=>res.text()
+            ).then(t=>alert(t));
+        }
+    </script>
+</body>
+</html>

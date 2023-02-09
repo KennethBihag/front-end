@@ -1,0 +1,36 @@
+:root{
+    --bg-color: gold;
+}
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: dotted 1px;
+}
+html,body{
+    background-color: var(--bg-color);
+    text-align: center;
+
+}
+#pre{
+    position: absolute;
+    width: 300px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+section#canvas{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 300px;
+}
+#d1{
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    margin: 50px;
+}
