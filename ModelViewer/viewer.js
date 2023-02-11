@@ -87,17 +87,19 @@ function ViewerFactory(){
                 material
             );
             mesh.name = name;
-            this.meshes.push(mesh);
             this.iCurrMesh++;
-            this.scene.add(mesh);
+            let point = new THREE.Group();
+            this.meshes.push(point);
+            point.add(mesh);
+            this.scene.add(point);
         }
         moveBackCurrMesh(){
             if(this.iCurrMesh < 0) return;
-            this.meshes[this.iCurrMesh].translateZ(-0.01);
+            this.meshes[this.iCurrMesh].children[0].translateZ(-1);
         }
         moveFrontCurrMesh(){
             if(this.iCurrMesh < 0) return;
-            this.meshes[this.iCurrMesh].translateZ(0.01);
+            this.meshes[this.iCurrMesh].children[0].translateZ(1);
         }
         zoomIn(){
             this.camera.position.x -= 0.01;
@@ -112,15 +114,28 @@ function ViewerFactory(){
         run(){
             let vw = this;
             let rotMat = new THREE.Matrix4();
-            rotMat.makeRotationY(0.01);
-            let traMat = new THREE.Matrix4();
-            traMat.makeTranslation(0,0,0.01);
+            rotMat.makeRotationY(0.05);
+            let zTranslation=0.01;
+            let movingForward=true;
             function animate(){
                 //vw.#handle = requestAnimationFrame(animate);
-                let mesh = vw.meshes[vw.iCurrMesh];
+                let mesh = vw.meshes[vw.iCurrMesh].children[0];
+                let group = vw.meshes[vw.iCurrMesh];
                 //mesh.geometry.center();
                 mesh.applyMatrix4(rotMat);
-                //mesh.applyMatrix4(traMat);
+                if(movingForward){
+                    if(group.position.z >= 1){
+                        movingForward=false;
+                        zTranslation=-0.01;
+                    }
+                }else{
+                    if(group.position.z <= -1){
+                        movingForward=true;
+                        zTranslation=0.01;
+                    }
+                }
+                //let transMatrix = new THREE.Matrix4(0,0,zTranslation);
+                group.translateZ(zTranslation);
                 //mesh.rotation.y += 0.01;
                 /*
                 if(vw.meshes[0] != undefined){
@@ -152,7 +167,10 @@ function ViewerFactory(){
     }
     function getSceneMeshData(viewer){
         let renderedFaces = viewer.renderer.info.render.triangles;
-        let meshes = viewer.scene.children.filter(c=>c.type=='Mesh');
+        let meshes =[]; //viewer.scene.children.filter(c=>c.type=='Mesh');
+        for(let g of viewer.meshes){
+            meshes.push(g.children[0]);
+        }
         let meshData = meshes.reduce(
             (t,c)=>{ t.f+= c.geometry.index.count/3; t.v+= c.geometry.attributes.position.count;
                 return t},

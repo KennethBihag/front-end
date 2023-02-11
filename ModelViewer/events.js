@@ -5,13 +5,13 @@ globalThis.onkeyup = k => {
                 globalThis.viewer.iCurrMesh++;
                 if (globalThis.viewer.iCurrMesh >= globalThis.viewer.meshes.length)
                     globalThis.viewer.iCurrMesh = 0;
-                console.log(`Current mesh is ${globalThis.viewer.meshes[globalThis.viewer.iCurrMesh].name}`)
+                console.log(`Current mesh is ${globalThis.viewer.meshes[globalThis.viewer.iCurrMesh].children[0].name}`)
                 break;
             case 'ArrowLeft':
                 globalThis.viewer.iCurrMesh--;
                 if (globalThis.viewer.iCurrMesh < 0)
                     globalThis.viewer.iCurrMesh = globalThis.viewer.meshes.length - 1;
-                console.log(`Current mesh is ${globalThis.viewer.meshes[globalThis.viewer.iCurrMesh].name}`)
+                console.log(`Current mesh is ${globalThis.viewer.meshes[globalThis.viewer.iCurrMesh].children[0].name}`)
                     break;
         }
     }
@@ -26,9 +26,8 @@ globalThis.onkeyup = k => {
 }
 
 globalThis.onkeydown = k=>{
-    let cm = globalThis.viewer.meshes
+    let cm = globalThis.viewer.meshes;
     if(cm == undefined) return;
-        [globalThis.viewer.iCurrMesh];
     switch(k.key){
         case '8':
             //globalThis.viewer.moveBackCurrMesh();
@@ -39,6 +38,4 @@ globalThis.onkeydown = k=>{
             globalThis.viewer.zoomOut();
         break;
     }
-    console.log(cm.position);
-
 }
