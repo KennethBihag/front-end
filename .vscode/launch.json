@@ -5,16 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
-            "request": "launch",
-            "name": "ModelViewer on Chrome",
-            "url": "http://localhost:8080/ModelViewer/"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Pokemon Generator on Chrome",
-            "url": "http://localhost:8080/Pokemon%20Generator/"
+            "type": "firefox",
+            "request": "attach",
+            "name": "ModelViewer_Firefox_Attach",
+            "url": "http://localhost:8080/ModelViewer"
         }
     ]
 }

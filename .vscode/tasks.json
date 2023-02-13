@@ -1,9 +1,15 @@
 {
     "tasks": [
         {
-            "label": "Go Live ModelViewer, No Browser",
+            "label": "LiveServer_8080",
             "type": "shell",
             "command": "live-server --no-browser"
+        },
+        {
+            "label":"Firefox_Debug",
+            "type": "process",
+            "command":"C:/Program Files/Mozilla Firefox/firefox.exe",
+            "args": ["-start-debugger-server"]
         },
         {
             "label": "Start Server",
