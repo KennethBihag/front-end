@@ -22,13 +22,14 @@ function ViewerFactory(){
         return `0x${(r+g+b).toString(16)}`;
     }
     class Viewer{
-        #handle = 0;
+        //#handle = 0;
         renderer;
         camera;
         scene;
         light;
         meshes = [];
         iCurrMesh = -1;
+        #autoMotions=false;
         constructor(canvas,clearColor,camOpts,lightOpts){
             this.scene = new THREE.Scene();
 
@@ -93,13 +94,32 @@ function ViewerFactory(){
             point.add(mesh);
             this.scene.add(point);
         }
+        reverseMeshOrder(){
+            let nMeshes = this.meshes.length;
+            /*
+            this.meshes=[];
+            for(let i=0;i<nMeshes;i++){
+                this.scene.r
+                let lastMesh = this.scene.children.pop();
+                this.meshes.push(lastMesh);
+            }
+            for(let m of this.meshes)
+                this.scene.children.push(m);
+                */
+            for(let m of this.meshes)
+                this.scene.remove(m);
+            this.meshes.reverse();
+            for(let i of this.meshes)
+                this.scene.add(i);
+            console.log('Reversed');
+        }
         moveBackCurrMesh(){
             if(this.iCurrMesh < 0) return;
-            this.meshes[this.iCurrMesh].children[0].translateZ(-1);
+            this.meshes[this.iCurrMesh].children[0].translateZ(-0.1);
         }
         moveFrontCurrMesh(){
             if(this.iCurrMesh < 0) return;
-            this.meshes[this.iCurrMesh].children[0].translateZ(1);
+            this.meshes[this.iCurrMesh].children[0].translateZ(0.1);
         }
         zoomIn(){
             this.camera.position.x -= 0.01;
@@ -110,6 +130,9 @@ function ViewerFactory(){
             this.camera.position.x += 0.01;
             this.camera.position.y += 0.01;
             this.camera.position.z += 0.01;
+        }
+        toggleAutoMotion(){
+            this.#autoMotions = !this.#autoMotions;
         }
         run(){
             let vw = this;
@@ -122,34 +145,22 @@ function ViewerFactory(){
                 let mesh = vw.meshes[vw.iCurrMesh].children[0];
                 let group = vw.meshes[vw.iCurrMesh];
                 //mesh.geometry.center();
-                mesh.applyMatrix4(rotMat);
-                if(movingForward){
-                    if(group.position.z >= 1){
-                        movingForward=false;
-                        zTranslation=-0.01;
+                if(vw.#autoMotions) {
+                    mesh.applyMatrix4(rotMat);
+                    if(movingForward){
+                        if(group.position.z >= 1){
+                            movingForward=false;
+                            zTranslation=-0.01;
+                        }
+                    }else{
+                        if(group.position.z <= -1){
+                            movingForward=true;
+                            zTranslation=0.01;
+                        }
                     }
-                }else{
-                    if(group.position.z <= -1){
-                        movingForward=true;
-                        zTranslation=0.01;
-                    }
+                    group.translateZ(zTranslation);
                 }
-                //let transMatrix = new THREE.Matrix4(0,0,zTranslation);
-                group.translateZ(zTranslation);
-                //mesh.rotation.y += 0.01;
-                /*
-                if(vw.meshes[0] != undefined){
-                    xTrans+=0.0001;
-                    //let y_ax = vw.meshes[0].geometry.boundingSphere.center.y;
-                    //vw.meshes[0].rotateOnAxis(new THREE.Vector3(xTrans,1,0),0.1);
-                    //vw.meshes[0].translateX(xTrans);
-                    
-                }
-                if(vw.meshes[1] != undefined){
-                    //vw.meshes[1].translate();
-                }
-                //vw.renderer.clearColor();
-                */
+
                 vw.renderer.render(vw.scene,vw.camera);
             }
             this.renderer.setAnimationLoop(animate);

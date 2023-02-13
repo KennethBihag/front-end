@@ -29,6 +29,7 @@ function FunctionsFactory(){
                 }
                 );
                 preElem.textContent = fr.result;
+                globalThis.preTexts.push(preElem.textContent);
             }
             fr.readAsText(inputElem.files[0]);
         }
