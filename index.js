@@ -24,8 +24,10 @@ const viewer = new globalThis.Viewer.Viewer(canvas,'#00ff00',pCameraOpts,lightOp
 globalThis.viewer=viewer;
 
 //load mesh
+globalThis.preTexts = [];
 let inputMesh = document.querySelector('input');
 let preMesh = document.querySelector('pre');
+globalThis.preMesh=preMesh;
 globalThis.Functions.LoadMesh(inputMesh,preMesh,viewer);
 /*
 const ce = new CustomEvent(
