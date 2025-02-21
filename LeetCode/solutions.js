@@ -41,10 +41,61 @@ function rshelper(nums, place){
     return newNums;
 }
 
-function cllvs(nums){
-    result = nums;
+let seqSz = 0;
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var constructDistancedSequence = function(n) {
+    if(n == 1){
+        result = "[1]";
+        return new Array(1);
+    }
+    seqSz = 2*n-1;
+    let seq = new Array(seqSz);
+    let toAdd = Array();
+
+    seq.fill(0);
+    seq[0] = seq[n] = n;
+
+    for(let i=1; i < n; i++){
+        toAdd.push(i);
+    }
+    while(toAdd.length > 0){
+        let currN = toAdd.pop();
+        let i = seq.indexOf(0);
+        if(!cdsHelper(seq, toAdd, i, currN)){
+            toAdd.unshift(currN);
+        }
+    }
+
+    result = JSON.stringify(seq);
+    return seq;
+
+};
+
+function cdsHelper(seq, buff, s, n){
+    let added = false;
+    if(n == 1){
+        seq[s] = 1;
+        added = true;
+    } else
+        while(s+n < seqSz){
+            if(seq[s] == 0 && seq[s+n] == 0){
+                seq[s] = seq[s+n] = n;
+                let newN = buff.shift();
+                if(newN !== undefined){
+                    let i = seq.indexOf(0);
+                    added = cdsHelper(seq, buff, i,newN);
+                }
+                break;
+            }
+            s++;
+        }
+
+    return added;
 }
 
-const funcs = [radix_sort, cllvs];
+const funcs = [radix_sort, constructDistancedSequence];
 
 export default funcs;
