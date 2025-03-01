@@ -96,6 +96,26 @@ function cdsHelper(seq, buff, s, n){
     return added;
 }
 
-const funcs = [radix_sort, constructDistancedSequence];
+var applyOperations = function(nums) {
+    for(let i=0; i < nums.length-1; i++){
+        if(nums[i]!=nums[i+1] || nums[i]==0)
+            continue;
+        nums[i] *= 2;
+        nums[i+1] = 0;
+    }
+    for(let i=0, j=1; i < nums.length-1; i++,j++){
+        if(nums[i] == 0){
+            while(nums[j] == 0)
+                j++;
+            if(j >= nums.length)
+                break;
+            nums[i] = nums[j];
+            nums[j] = 0;
+        }
+    }
+    result = nums;
+};
+
+const funcs = [radix_sort, constructDistancedSequence, applyOperations];
 
 export default funcs;

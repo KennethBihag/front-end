@@ -1,4 +1,4 @@
-export const inputLabels = ["Numbers", "Max Number"];
+export const inputLabels = ["Numbers", "Max Number", "Numbers [0,1000]"];
 
 function AsArrayNums(str){
     let sep = RegExp(" +");
@@ -15,6 +15,6 @@ function AsInt(str){
     return n;
 }
 
-const parsers = [AsArrayNums, AsInt];
+const parsers = [AsArrayNums, AsInt, AsArrayNums];
 
 export default parsers;
