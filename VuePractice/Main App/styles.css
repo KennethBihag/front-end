@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+main {
+    text-align: center;
+    height: 90vh;
+}
